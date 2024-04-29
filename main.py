@@ -71,11 +71,17 @@ class Membership:
         result_tmp = []
         
         for idx, _ in enumerate(parameter_data):
-            # implement euclidean distance
-            euclidean_dist = round(sqrt((monthly_expense - parameter_data[idx][0])**2 + \
-                                        (monthly_income - parameter_data[idx][1])**2), 2)
-            
-            result_tmp.append(euclidean_dist)
+
+            if monthly_expense < monthly_income:
+
+                # implement euclidean distance
+                euclidean_dist = round(sqrt((monthly_expense - parameter_data[idx][0])**2 + \
+                                            (monthly_income - parameter_data[idx][1])**2), 2)
+                
+                result_tmp.append(euclidean_dist)
+
+            else:
+                raise Exception("Income harus lebih besar daripada expense")
             
         # store the euclidean distance values to dictionary
         dict_result = {
@@ -147,7 +153,7 @@ print(user_1.username)
 
 # predict membership
 user_1.predict_membership(username = "Shandy",
-                          monthly_expense = 3,
-                          monthly_income = 25)
+                          monthly_expense = 7,
+                          monthly_income = 5)
 
 print(user_1.data)
